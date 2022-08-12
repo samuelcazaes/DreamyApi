@@ -1,4 +1,4 @@
-using DreamyApi.Context;
+using DreamyApi.Dominio.Context;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
@@ -38,8 +38,8 @@ namespace DreamyApi
                 var xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFile);
                 opt.IncludeXmlComments(xmlPath);
             });
-
-            services.AddEntityFrameworkSqlServer().AddDbContext<ApplicationDbContext>(o => o.UseSqlServer(Configuration.GetConnectionString("Database")));
+          
+            services.AddDbContext<ApplicationDbContext>(o => o.UseSqlServer(Configuration.GetConnectionString("Database")));
             services.AddControllers();
             services.AddSwaggerGen(c =>
             {

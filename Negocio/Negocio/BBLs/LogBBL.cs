@@ -1,5 +1,5 @@
 ﻿using Dominio.Models.Log;
-using DreamyApi.Context;
+using DreamyApi.Dominio.Context;
 using System;
 
 namespace Negocio.BBLs

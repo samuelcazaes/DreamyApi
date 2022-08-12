@@ -8,16 +8,13 @@ using System;
 
 namespace DreamyApi.Controllers
 {
+    /// <summary>
+    /// Controller Responsável por gerenciar a parte de produtos do sistema.
+    /// </summary>
     [ApiController]
     [Route("[controller]")]
     public class ProductController : ControllerBase
     {
-
-        public ProductController()
-        {
-
-        }
-
         /// <summary>
         /// Save - Responsavel por salvar um produto no banco de dados, enviar dados pelo body.
         /// </summary>  
@@ -198,7 +195,7 @@ namespace DreamyApi.Controllers
                 response.Message = pBBL.DeleteProduct(produtoId);
                 response.Object = pBBL.GetProductDb(produtoId);
 
-                if (response.Object == null)
+                if (response.Object != null)
                 {
                     response.Success = false;
                     response.Message = ProductMessages.ErrorRemovingProduct;

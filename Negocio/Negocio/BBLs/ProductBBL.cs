@@ -47,6 +47,7 @@ namespace Negocio.BBLs
 
                 ProdutoViewModel productView = new()
                 {
+                    Id = productDB.Id,
                     Nome = productDB.Nome,
                     Description = productDB.Description,
                     Price = productDB.Price,
@@ -73,6 +74,7 @@ namespace Negocio.BBLs
                 {
                     ProdutoViewModel productView = new()
                     {
+                        Id = produto.Id,
                         Nome = produto.Nome,
                         Description = produto.Description,
                         Price = produto.Price,
@@ -129,7 +131,7 @@ namespace Negocio.BBLs
                 if (produto.Price != 0)
                     productToSave.Price = produto.Price;
 
-                if (string.IsNullOrEmpty(produto.Description))
+                if (!string.IsNullOrEmpty(produto.Description))
                     productToSave.Description = produto.Description;
                
                 db.SaveChanges();
@@ -151,9 +153,9 @@ namespace Negocio.BBLs
                     return ProductMessages.GetProductNoId;
                 }
 
-                Produtos productToRemove = db.Produtos.Where(x => x.Id == produtoId).FirstOrDefault();
-                
-                if(productToRemove == null)
+                Produtos productToRemove = GetProductDb(produtoId);
+
+                if (productToRemove == null)
                 {
                     return ProductMessages.ProductNotFind;
                 }
@@ -163,7 +165,7 @@ namespace Negocio.BBLs
 
                 Produtos productVerify = GetProductDb(produtoId);
 
-                if (productToRemove != null)
+                if (productVerify != null)
                 {
                     return ProductMessages.ErrorRemovingProduct;
                 }

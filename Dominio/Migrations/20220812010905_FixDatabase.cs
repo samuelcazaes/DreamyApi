@@ -1,24 +1,11 @@
 ﻿using Microsoft.EntityFrameworkCore.Migrations;
 
-namespace DreamyApi.Migrations
+namespace Dominio.Migrations
 {
-    public partial class LogMigration : Migration
+    public partial class FixDatabase : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
-            migrationBuilder.AddColumn<string>(
-                name: "Description",
-                table: "Produtos",
-                type: "nvarchar(max)",
-                nullable: true);
-
-            migrationBuilder.AddColumn<double>(
-                name: "Price",
-                table: "Produtos",
-                type: "float",
-                nullable: false,
-                defaultValue: 0.0);
-
             migrationBuilder.CreateTable(
                 name: "Logs",
                 columns: table => new
@@ -33,6 +20,21 @@ namespace DreamyApi.Migrations
                 {
                     table.PrimaryKey("PK_Logs", x => x.Id);
                 });
+
+            migrationBuilder.CreateTable(
+                name: "Produtos",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Nome = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Description = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Price = table.Column<double>(type: "float", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Produtos", x => x.Id);
+                });
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
@@ -40,13 +42,8 @@ namespace DreamyApi.Migrations
             migrationBuilder.DropTable(
                 name: "Logs");
 
-            migrationBuilder.DropColumn(
-                name: "Description",
-                table: "Produtos");
-
-            migrationBuilder.DropColumn(
-                name: "Price",
-                table: "Produtos");
+            migrationBuilder.DropTable(
+                name: "Produtos");
         }
     }
 }

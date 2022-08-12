@@ -1,5 +1,5 @@
 ﻿
-using DreamyApi.Context;
+using DreamyApi.Dominio.Context;
 
 namespace Negocio.BBLs
 {
