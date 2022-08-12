@@ -18,8 +18,7 @@ namespace DreamyApi.Controllers
         /// <summary>
         /// Save - Responsavel por salvar um produto no banco de dados, enviar dados pelo body.
         /// </summary>  
-        [HttpPost]
-        [Route("Save")]
+        [HttpPost]   
         public IActionResult SaveProduct(ProdutoViewModel produto)
         {
             try
@@ -59,7 +58,7 @@ namespace DreamyApi.Controllers
         /// Find - Responsável por buscar produto no banco de dados, passar como parâmetro o productId.
         /// </summary>
         [HttpGet]
-        [Route("Find")]
+        [Route("{productId}")]
         public IActionResult GetProduct(int productId)
         {
             try
@@ -101,7 +100,6 @@ namespace DreamyApi.Controllers
         /// Find - Responsável por buscar todos os produtos registrados no banco de dados, sem parâmetros.
         /// </summary>
         [HttpGet]
-        [Route("FindAll")]
         public IActionResult GetAllProducts()
         {
             try
@@ -133,8 +131,7 @@ namespace DreamyApi.Controllers
         /// <summary>
         /// Find - Responsável por editar um produto já existente, enviar dados no body.
         /// </summary>
-        [HttpPost]
-        [Route("Update")]
+        [HttpPut]
         public IActionResult UpdateProduct(ProdutoViewModel produto)
         {
             try
@@ -174,8 +171,8 @@ namespace DreamyApi.Controllers
         /// <summary>
         /// Find - Responsável por deletar um produto do banco de dados, enviar como parâmetro productId.
         /// </summary>
-        [HttpPost]
-        [Route("Delete")]
+        [HttpDelete]
+        [Route("{produtoId}")]
         public IActionResult DeleteProduct(int produtoId)
         {
             try
